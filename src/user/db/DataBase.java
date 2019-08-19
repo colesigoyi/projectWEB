@@ -86,6 +86,7 @@ public class DataBase {
     //}
 
     public static void saveUser(String username, String password) {
+
         boolean flag = false;
         Connection conn = null;
         PreparedStatement pst = null;
@@ -94,6 +95,8 @@ public class DataBase {
             String  sql = "insert into UserDataBase (username, password) values(?,?)";
             pst = conn.prepareStatement(sql);
             User user = new User(username, password);
+            System.out.println(user.getName());
+            System.out.println(user.getPass());
             pst.setString(1,user.getName());
             pst.setString(2,user.getPass());
             int rows = pst.executeUpdate();

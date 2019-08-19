@@ -16,7 +16,8 @@ public class DBConnection {
     //定义MySQL的数据库驱动程序
     public static final String DBDRIVER = "com.mysql.jdbc.Driver";
     //定义MySQL数据库链接地址
-    public static final String DBDURL = "jdbc:mysql://localhost:3306/UserDataBase";
+    public static final String DBDURL = "jdbc:mysql://localhost:3306/UserDataBase" +
+            "?useUnicode=true&characterEncoding=utf-8";
     //MySQL数据库的连接用户名
     public static final String DBUSER = "root";
     //MySQL数据库的连接密码

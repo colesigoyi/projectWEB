@@ -8,14 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet("/registServlet")
 public class registServlet extends HttpServlet {
     private UserService userService = new UserService();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        //String username = request.getParameter("username");
+        String username = new String(request.getParameter("username").getBytes("iso-8859-1"), "GBK");
+        String password = new String(request.getParameter("password").getBytes("iso-8859-1"), "GBK");
+        //String password = request.getParameter("password");
+        //System.out.println(username);
+        //System.out.println(password);
+        //username.getBytes(StandardCharsets.UTF_8);
         if (username.isEmpty() || password.isEmpty()) {
             request.getRequestDispatcher("registError.jsp").forward(request, response);
         }else {
