@@ -2,6 +2,7 @@ package user.service;
 
 import user.User;
 import user.dao.UserDao;
+import user.dao.impl.UserDaoImpl;
 
 /**
  * @program: projectWEB
@@ -11,7 +12,7 @@ import user.dao.UserDao;
  **/
 
 public class UserService {
-    private static UserDao userDao = new UserDao();
+    private static UserDao userDao = new UserDaoImpl();
 
     //public static boolean regist(User user) {
     //    //    int save = userDao.save(user);

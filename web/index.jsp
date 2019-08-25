@@ -44,17 +44,17 @@
   <body>
 
   <div id="header">
-    <h1 style="font-family:verdana" align="center">Welcome</h1>
+    <h1 style="font-family:verdana" align="center">图书借阅系统</h1>
   </div>
 
   <div id="section">
     <form action="${pageContext.request.contextPath}/loginServlet" method="post"  style="padding: 260px;margin: 50px;font-size: 20px; font-style: inherit">
-      用户名称：<input type="text" name="username"/><br>
+      登录账号：<input type="text" name="username"/><br>
       <br>
-      用户密码：<input type="password" name="password"/><br>
+      登录密码：<input type="password" name="password"/><br>
       <br>
       <input type="submit" value="登录">
-      <input type="submit" value="注册" formaction="regist.jsp" method="get">
+      <input type="submit" value="注册用户" formaction="regist.jsp" method="get">
     </form>
   </div>
 

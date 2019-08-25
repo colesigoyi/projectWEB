@@ -1,6 +1,9 @@
 package user.dao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 /**
  * @program: projectWEB
@@ -10,23 +13,40 @@ import java.sql.*;
  **/
 
 public class DBConnection {
-    /*
-        硬编码：把外部变量值写死在程序中，需要修改时，要重新编译，对系统很不友好
-         */
-    //定义MySQL的数据库驱动程序
-    public static final String DBDRIVER = "com.mysql.jdbc.Driver";
-    //定义MySQL数据库链接地址
-    public static final String DBDURL = "jdbc:mysql://localhost:3306/UserDataBase" +
-            "?useUnicode=true&characterEncoding=utf-8";
-    //MySQL数据库的连接用户名
-    public static final String DBUSER = "root";
-    //MySQL数据库的连接密码
-    public static final String DBPASS = "root";
+    ///*
+    //    硬编码：把外部变量值写死在程序中，需要修改时，要重新编译，对系统很不友好
+    //     */
+    ////定义MySQL的数据库驱动程序
+    //public static final String DBDRIVER = "com.mysql.jdbc.Driver";
+    ////定义MySQL数据库链接地址
+    //public static final String DBDURL = "jdbc:mysql://localhost:3306/UserDataBase" +
+    //        "?useUnicode=true&characterEncoding=utf-8";
+    ////MySQL数据库的连接用户名
+    //public static final String DBUSER = "root";
+    ////MySQL数据库的连接密码
+    //public static final String DBPASS = "root";
+
+    private static String driver ;
+    private static String url;
+    private static String username;
+    private static String password;
 
     static {
         try {
-            Class.forName(DBDRIVER);
-        } catch (ClassNotFoundException e) {
+            //读取配置文件
+            InputStream is = DBUtil.class.getClassLoader().getResourceAsStream("db.properties");
+            //获取Properties对象
+            Properties p = new Properties();
+            //把流里的内容加载到p
+            p.load(is);
+            //获取values
+            driver = p.getProperty("driver");
+            url = p.getProperty("url");
+            username = p.getProperty("username");
+            password = p.getProperty("password");
+            //注册驱动
+            Class.forName(driver);
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +56,7 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(DBDURL,DBUSER,DBPASS);
+            conn = DriverManager.getConnection(url,username,password);
         } catch (SQLException e) {
             e.printStackTrace();
         }

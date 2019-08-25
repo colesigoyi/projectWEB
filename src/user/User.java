@@ -1,6 +1,7 @@
 package user;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @program: projectWEB
@@ -38,6 +39,26 @@ public class User implements Serializable {
         this.pass = pass;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", pass='" + pass + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name) &&
+                Objects.equals(pass, user.pass);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, pass);
+    }
 }
 

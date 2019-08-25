@@ -3,16 +3,17 @@ package user.db;
 import user.User;
 import user.dao.DBConnection;
 
-import java.io.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @program: projectWEB
- * @author: TaoXueFeng
- * @create: 2019-08-16 20:23
- * @desc:
+ * @ program: projectWEB
+ * @ author: TaoXueFeng
+ * @ create: 2019-08-16 20:23
+ * @ desc:
  **/
 
 public class DataBase {
@@ -27,7 +28,45 @@ public class DataBase {
         //饿汉式
         return instance;
     }
+    public static void saveUser(String username, String password) {
 
+        //boolean flag = false;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        try {
+            conn = DBConnection.getConnection();
+            //?表示占位符
+            String  sql = "insert into UserDataBase (username, password) values(?,?)";
+            pst = conn.prepareStatement(sql);
+            User user = new User(username, password);
+            //System.out.println(user.getName());
+            //System.out.println(user.getPass());
+            pst.setString(1,user.getName());
+            pst.setString(2,user.getPass());
+            int rows = pst.executeUpdate();
+            //if (rows > 0) {
+            //    flag = true;
+            //}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBConnection.close(pst, conn);
+        }
+        //try {
+        //    ObjectOutputStream oos = new ObjectOutputStream(
+        //            new FileOutputStream(
+        //                    "/Users/taoxuefeng/Documents/02_StudyCoding" +
+        //                            "/01_Java/projectWEB/src/user/db/User.txt"));
+        //    User user = new User(username, password);
+        //    //System.out.println(user);
+        //    userList.add(user);
+        //    oos.writeObject(userList);
+        //    oos.close();
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //}
+    }
+}
     //public static int save(User user) {
     //    try {
     //        if (user != null) {
@@ -85,44 +124,8 @@ public class DataBase {
         //return null;
     //}
 
-    public static void saveUser(String username, String password) {
 
-        boolean flag = false;
-        Connection conn = null;
-        PreparedStatement pst = null;
-        try {
-            conn = DBConnection.getConnection();
-            String  sql = "insert into UserDataBase (username, password) values(?,?)";
-            pst = conn.prepareStatement(sql);
-            User user = new User(username, password);
-            System.out.println(user.getName());
-            System.out.println(user.getPass());
-            pst.setString(1,user.getName());
-            pst.setString(2,user.getPass());
-            int rows = pst.executeUpdate();
-            if (rows > 0) {
-                flag = true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DBConnection.close(pst, conn);
-        }
-        //try {
-        //    ObjectOutputStream oos = new ObjectOutputStream(
-        //            new FileOutputStream(
-        //                    "/Users/taoxuefeng/Documents/02_StudyCoding" +
-        //                            "/01_Java/projectWEB/src/user/db/User.txt"));
-        //    User user = new User(username, password);
-        //    //System.out.println(user);
-        //    userList.add(user);
-        //    oos.writeObject(userList);
-        //    oos.close();
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
-    }
-}
+
 //class Add {
 //    public boolean add(User user) {
 //        boolean flag = false;

@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
+<%--<body background="${pageContext.request.contextPath}/i/bg.jpg"  width:100% height:100%">--%>
 <head>
     <style>
         #header {
@@ -32,10 +33,18 @@
         }
         .footer{height:20px;margin-top:-200px;background-color: #46b8da;
         }
+
+        #Layer1 {
+
+        }
     </style>
 </head>
 
+
 <body>
+<%--<div id="Layer1" style="position:fixed; left:0px; top:0px; width:100%; height:100%">--%>
+<%--    <img src="${pageContext.request.contextPath}/i/bg.jpg" width="100%" height="100%"/>--%>
+<%--</div>--%>
 
 <div id="header">
     <h1>Welcome ${user.name} !</h1>
@@ -44,34 +53,32 @@
 
 <div id="section">
     <h2></h2>
-    <p>
-        坐亦禅，行亦禅，一花一世界，一叶一如来，
-    </p>
-    <p>
-        春来花自青，秋至叶飘零，无穷般若心自在，语默动静体自然。
-    </p>
-    <form action="index.jsp" method="get" align="center">
-        <input type="submit" value="返回主页">
-    </form>
-    <p>
-        <video width="320" height="240" controls="controls" autoplay="autoplay">
-            <source src="/video/12.mp4" type="video/mp4" />
-            <object data="/video/12.mp4" width="320" height="240">
-                <embed width="320" height="240" src="/video/12.mp4" />
-            </object>
-        </video>
-    </p>
+<%--    <p>--%>
+<%--        坐亦禅，行亦禅，一花一世界，一叶一如来，--%>
+<%--    </p>--%>
+<%--    <p>--%>
+<%--        春来花自青，秋至叶飘零，无穷般若心自在，语默动静体自然。--%>
+<%--    </p>--%>
     <p>
         <audio controls="controls">
             <source src="/redio/PDGo.mp3" type="audio/mpeg">
             <embed height="100" width="100" src="/redio/PDGo.mp3" />
         </audio>
     </p>
-
-
+    <form action="index.jsp" method="get" align="center">
+        <input type="submit" value="返回主页">
+    </form>
+<%--    <p>--%>
+<%--        <video width="320" height="240" controls="controls" autoplay="autoplay">--%>
+<%--            <source src="/video/12.mp4" type="video/mp4" />--%>
+<%--            <object data="/video/12.mp4" width="320" height="240">--%>
+<%--                <embed width="320" height="240" src="/video/12.mp4" />--%>
+<%--            </object>--%>
+<%--        </video>--%>
+<%--    </p>--%>
 
 
 </div>
 </body>
-
+<%--</body>--%>
 </html>
